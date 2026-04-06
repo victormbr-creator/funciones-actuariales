@@ -1,25 +1,23 @@
 """
-Funciones generales de valor presente esperado.
+Funciones generales de valor presente actuarial y financiero.
 """
 
 from .utilidades import descuento_temporal
 
 
-def valor_presente_flujos(flujos: list[tuple[float, float]], i: float) -> float:
+def valor_presente_flujos(flujos: list, i: float) -> float:
     """
-    flujos = [(tiempo, monto), ...]
+    Calcula el valor presente de una lista de flujos.
+    El flujo en la posición t se descuenta t periodos.
     """
-    vp = 0.0
-    for tiempo, monto in flujos:
-        vp += monto * descuento_temporal(i, tiempo)
-    return vp
+    suma = 0.0
+    for t, flujo in enumerate(flujos):
+        suma += flujo * descuento_temporal(i, t)
+    return suma
 
 
-def valor_presente_esperado(pagos: list[tuple[float, float, float]], i: float) -> float:
+def valor_presente_monto(monto: float, i: float, n: int) -> float:
     """
-    pagos = [(tiempo, monto, probabilidad), ...]
+    Valor presente de un monto único pagadero en n periodos.
     """
-    vpe = 0.0
-    for tiempo, monto, probabilidad in pagos:
-        vpe += monto * probabilidad * descuento_temporal(i, tiempo)
-    return vpe
+    return monto * descuento_temporal(i, n)

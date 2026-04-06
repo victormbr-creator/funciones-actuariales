@@ -7,7 +7,7 @@ name = "funciones-actuariales"
 version = "0.1.0"
 description = "Librería en Python con funciones actuariales en español"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.9,<4.0"
 authors = [
   {name = "Fernanda León"}
 ]
